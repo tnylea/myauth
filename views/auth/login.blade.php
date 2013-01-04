@@ -1,7 +1,7 @@
 {{ Form::open(Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.login_route')) }}
     <!-- check for login errors flash var -->
-    @if (Session::has('login_errors'))
-        <span class="error">Username or password incorrect.</span>
+    @if (Session::has('notification'))
+        <span class="notification">{{ Session::get('notification') }}</span>
     @endif
     <!-- username field -->
     <p>{{ Form::label('email', 'Email') }}</p>
