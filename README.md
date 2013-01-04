@@ -1,0 +1,4 @@
+auth
+====
+
+Laravel Authentication Bundle
