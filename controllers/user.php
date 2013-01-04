@@ -34,16 +34,21 @@ class Auth_User_Controller extends Base_Controller{
 	        'password'      => Input::get('password')
 	    );
 
-	    $redirect_url = Config::get('auth::config.bundle_route');
 
 	    if ( Auth::attempt($userdata) ){
 	        // we are now logged in, go to dashboard
-	    	$redirect_url .= '/' . Config::get('auth::config.dashboard_route');;
+	        
+	        if(Config::get('auth::config.login_redirect') != ''){
+	    		$redirect_url = Config::get('auth::config.login_redirect');
+	    	} else {
+	    		$redirect_url = Config::get('auth::config.bundle_route') . '/dashboard';
+	    	}
+
 	        return Redirect::to($redirect_url);
 	    } else {
 	        // auth failure! redirect to login with errors
 	        $redirect_url .= '/' . Config::get('auth::config.login_route');
-	        return Redirect::to($redirect_url)->with('login_errors', true);
+	        return Redirect::to($redirect_url)->with('notification', 'Incorrect login or password');
 	    }
 
 	}

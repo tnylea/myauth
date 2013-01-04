@@ -9,7 +9,21 @@
 $bundle_route = '(:bundle)/';
 
 if(Config::get('auth::config.bundle_route') != ''){
-	Route::get($bundle_route, function(){ echo 'hooray'; });
+
+	Route::get($bundle_route, function(){ 
+
+		if (Auth::guest()){
+			return Redirect::to(Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.login_route'));
+		} else {
+			if(Config::get('auth::config.login_redirect') != ''){
+				return Redirect::to(Config::get('auth::config.login_redirect'));
+			} else {
+				return View::make('auth::dashboard.index');
+			}
+		}
+
+	});
+
 }
 
 /*
@@ -30,7 +44,7 @@ Route::post($login_route, 'auth::user@login');
 |--------------------------------------------------------------------------
 */
 
-$logout_route = $bundle_route . Config::get('auth::config.signup_route');
+$logout_route = $bundle_route . Config::get('auth::config.logout_route');
 
 Route::get($logout_route, function(){ 
 	Auth::logout();
@@ -50,60 +64,27 @@ Route::get($signup_route, function(){ return View::make('auth::auth.signup'); })
 
 Route::post($signup_route, 'auth::user@signup');
 
-Route::get('testing', function(){
-	//$new = Bundle::get('auth');
-	//echo $new["handles"];
-});
+
 /*
 |--------------------------------------------------------------------------
 | Bundle Dashboard Route
 |--------------------------------------------------------------------------
 */
 
-if(Config::get('auth::config.dashboard_route') != ''){
+if(Config::get('auth::config.login_redirect') != ''){
 	
-	if (Auth::guest()){
-		return Redirect::to(Config::get('auth::config.login_route'));
-	} else {
-		return Redirect::to(Config::get('auth::config.dashboard_route'));
-	}
+		return Redirect::to(Config::get('auth::config.login_redirect'));
 
 } else {
 
-	Route::get('(:bundle)/dashboard', array('before' => 'auth', function(){ 
-		return View::make('auth::dashboard.index'); 
-	}));
+	$dashboard_route = $bundle_route . 'dashboard';
+
+	Route::get($dashboard_route, function(){ 
+		if (Auth::guest()){
+			return Redirect::to(Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.login_route'));
+		} else {
+			return View::make('auth::dashboard.index'); 
+		}
+	});
 
 }
-
-
-/*
-|--------------------------------------------------------------------------
-| Authentication filter.
-|--------------------------------------------------------------------------
-*/
-
-Route::filter('auth', function()
-{
-    if (Auth::guest()){
-
-    	// If the user is not logged in then redirect them to the login page
-
-		return Redirect::to(Config::get('auth::config.login_route'));
-
-	} else {
-		
-		// If the user has entered their own dashboard route, then
-		// redirect to that custom dashboard route
-
-		if(Config::get('auth::config.dashboard_route') != ''){
-			
-			return Redirect::to(Config::get('auth::config.dashboard_route'));
-		
-		} else {
-		
-			return View::make('auth::dashboard.index');
-
-		}
-	}
-});
