@@ -1,4 +1,4 @@
-{{ Form::open(Config::get('auth::config.login_route')) }}
+{{ Form::open(Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.login_route')) }}
     <!-- check for login errors flash var -->
     @if (Session::has('login_errors'))
         <span class="error">Username or password incorrect.</span>

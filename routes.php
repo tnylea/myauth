@@ -50,7 +50,10 @@ Route::get($signup_route, function(){ return View::make('auth::auth.signup'); })
 
 Route::post($signup_route, 'auth::user@signup');
 
-
+Route::get('testing', function(){
+	//$new = Bundle::get('auth');
+	//echo $new["handles"];
+});
 /*
 |--------------------------------------------------------------------------
 | Bundle Dashboard Route

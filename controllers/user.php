@@ -20,7 +20,7 @@ class Auth_User_Controller extends Base_Controller{
 	    $user = new User($user_data);
 	    $user->save();
 
-	    $redirect_url = Config::get('auth::config.handles') . '/login';
+	    $redirect_url = Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.login_route');
 
 	    return Redirect::to($redirect_url)->with('notification', 'Your Account has been Successfully Created! Please Login Below.');
 
@@ -34,15 +34,15 @@ class Auth_User_Controller extends Base_Controller{
 	        'password'      => Input::get('password')
 	    );
 
-	    $redirect_url = Config::get('auth::config.handles');
+	    $redirect_url = Config::get('auth::config.bundle_route');
 
 	    if ( Auth::attempt($userdata) ){
 	        // we are now logged in, go to dashboard
-	    	$redirect_url .= "/dashboard";
+	    	$redirect_url .= '/' . Config::get('auth::config.dashboard_route');;
 	        return Redirect::to($redirect_url);
 	    } else {
 	        // auth failure! redirect to login with errors
-	        $redirect_url .= "/login";
+	        $redirect_url .= '/' . Config::get('auth::config.login_route');
 	        return Redirect::to($redirect_url)->with('login_errors', true);
 	    }
 
