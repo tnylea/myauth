@@ -1,6 +1,6 @@
 <?php
 
-$bundle = Bundle::get('auth');
+$bundle = Bundle::get('myauth');
  
 return array(
 

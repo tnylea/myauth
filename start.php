@@ -31,5 +31,5 @@ Autoloader::map(array(
 */
 
 Autoloader::directories(array(
-	'auth' => Bundle::path('auth').'models',
+	'myauth' => Bundle::path('myauth').'models',
 ));

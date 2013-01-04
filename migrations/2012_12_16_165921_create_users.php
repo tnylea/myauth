@@ -1,6 +1,6 @@
 <?php
 
-class Auth_Create_Users {
+class MyAuth_Create_Users {
 
 	/**
 	 * Make changes to the database.

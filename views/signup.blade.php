@@ -1,4 +1,4 @@
-{{ Form::open(Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.signup_route')) }}
+{{ Form::open(Config::get('myauth::config.bundle_route') . '/' . Config::get('myauth::config.signup_route')) }}
 
     <!-- email field -->
     <p>{{ Form::label('email', 'Email Address') }}</p>

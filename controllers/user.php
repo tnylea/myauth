@@ -1,6 +1,6 @@
 <?php 
 
-class Auth_User_Controller extends Base_Controller{
+class MyAuth_User_Controller extends Base_Controller{
 	
 	public static $rules = array(
         'email' => 'required|email|unique:users',
@@ -20,7 +20,7 @@ class Auth_User_Controller extends Base_Controller{
 	    $user = new User($user_data);
 	    $user->save();
 
-	    $redirect_url = Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.login_route');
+	    $redirect_url = Config::get('myauth::config.bundle_route') . '/' . Config::get('myauth::config.login_route');
 
 	    return Redirect::to($redirect_url)->with('notification', 'Your Account has been Successfully Created! Please Login Below.');
 
@@ -38,16 +38,16 @@ class Auth_User_Controller extends Base_Controller{
 	    if ( Auth::attempt($userdata) ){
 	        // we are now logged in, go to dashboard
 	        
-	        if(Config::get('auth::config.login_redirect') != ''){
-	    		$redirect_url = Config::get('auth::config.login_redirect');
+	        if(Config::get('myauth::config.login_redirect') != ''){
+	    		$redirect_url = Config::get('myauth::config.login_redirect');
 	    	} else {
-	    		$redirect_url = Config::get('auth::config.bundle_route') . '/dashboard';
+	    		$redirect_url = Config::get('myauth::config.bundle_route') . '/dashboard';
 	    	}
 
 	        return Redirect::to($redirect_url);
 	    } else {
 	        // auth failure! redirect to login with errors
-	        $redirect_url .= '/' . Config::get('auth::config.login_route');
+	        $redirect_url .= '/' . Config::get('myauth::config.login_route');
 	        return Redirect::to($redirect_url)->with('notification', 'Incorrect login or password');
 	    }
 

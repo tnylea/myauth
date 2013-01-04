@@ -1,4 +1,4 @@
-{{ Form::open(Config::get('auth::config.bundle_route') . '/' . Config::get('auth::config.login_route')) }}
+{{ Form::open(Config::get('myauth::config.bundle_route') . '/' . Config::get('myauth::config.login_route')) }}
     <!-- check for login errors flash var -->
     @if (Session::has('notification'))
         <span class="notification">{{ Session::get('notification') }}</span>
