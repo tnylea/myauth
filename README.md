@@ -1,6 +1,6 @@
 #MyAuth - A Laravel Authentication Bundle
 
-This bundles is a basic wrapper for the current Authentication system built in Laravel. This bundle includes the basic user controller, login, signup, and dashboard views. It is very easy to customize and very easy to use.
+This bundles is a basic wrapper for the current Authentication system built in Laravel. This bundle includes the basic user controller, login, signup, and dashboard views. It is very easy to use and customize.
 
 ## Installation
 
