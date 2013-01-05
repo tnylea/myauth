@@ -10,16 +10,16 @@ To install the bundle, run the following command
 php artisan bundle:install myauth
 ```
 
-Next, we need to migrate the users table. Do this by running the command below (note: be sure that you have already run ```php artisan migrate:install```)
-
-```PHP
-php artisan migrate myauth
-```
-
-Finally, we will tell the application to auto load the bundle. In your application/bundles.php file add the following line to the array
+Next, we will tell the application to auto load the bundle. In your application/bundles.php file add the following line to the array
 
 ```PHP
 'myauth' => array('auto' => true),
+```
+
+Finally, we need to migrate the users table. Do this by running the command below (note: be sure that you have already run ```php artisan migrate:install```)
+
+```PHP
+php artisan migrate myauth
 ```
 
 ## Testing it out
