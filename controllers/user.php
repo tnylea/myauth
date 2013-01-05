@@ -34,7 +34,6 @@ class MyAuth_User_Controller extends Base_Controller{
 	        'password'      => Input::get('password')
 	    );
 
-
 	    if ( Auth::attempt($userdata) ){
 	        // we are now logged in, go to dashboard
 	        
@@ -47,7 +46,7 @@ class MyAuth_User_Controller extends Base_Controller{
 	        return Redirect::to($redirect_url);
 	    } else {
 	        // auth failure! redirect to login with errors
-	        $redirect_url .= '/' . Config::get('myauth::config.login_route');
+	        $redirect_url = Config::get('myauth::config.bundle_route') . '/' . Config::get('myauth::config.login_route');
 	        return Redirect::to($redirect_url)->with('notification', 'Incorrect login or password');
 	    }
 
