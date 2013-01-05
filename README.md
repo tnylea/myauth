@@ -1,6 +1,6 @@
 #MyAuth - A Laravel Authentication Bundle
 
-This bundles is a basic wrapper for the current Authentication system built in Laravel. This bundle includes the User controller, login, signup, and dashboard views. It is very easy to customize and very easy to use.
+This bundles is a basic wrapper for the current Authentication system built in Laravel. This bundle includes the basic user controller, login, signup, and dashboard views. It is very easy to customize and very easy to use.
 
 ## Installation
 
@@ -10,13 +10,13 @@ To install the bundle, run the following command
 php artisan bundle:install myauth
 ```
 
-Next, we need to migrate the users table as follows (note: be sure that you have already run ```php artisan migrate:install```)
+Next, we need to migrate the users table. Do this by running the command below (note: be sure that you have already run ```php artisan migrate:install```)
 
 ```PHP
 php artisan migrate myauth
 ```
 
-After migrating the user table we'll need to tell the application to auto load the bundle. In your application/bundles.php file add the following line to the return array
+Finally, we will tell the application to auto load the bundle. In your application/bundles.php file add the following line to the array
 
 ```PHP
 'myauth' => array('auto' => true),
@@ -53,9 +53,9 @@ return array(
 );
 ```
 
-Additionally you can specify the login_recirect route since you'll probably want to create your own dashboard for the user to see when they login. (warning: Make sure to protect the login_redirect route with an authentication filter) [Find out about the authentication filter here](http://www.laravel.com/docs/auth/usage#filter)
+Additionally you can specify the login_redirect route for the user to be redirected to when they are authenticated. (warning: Make sure to protect the login_redirect route with an authentication filter) [Find out about the authentication filter here](http://www.laravel.com/docs/auth/usage#filter)
 
-Finally, if you wish to change the URL structure of your authentication route you can add the handles parameter in the 'myauth' array element of the application/bundles.php file
+Finally, if you wish to change the URL structure of the authentication routes you can add the handles parameter in the 'myauth' array element of the application/bundles.php file
 
 ```PHP
 'myauth' => array('auto' => true, 'handles' => 'auth'),
