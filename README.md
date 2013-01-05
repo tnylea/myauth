@@ -28,7 +28,7 @@ If everything was successful you should be able to navigate to your APPLICATION_
 
 Other routes that can be accessed in this bundle are:
 
-- APPLICATION_host/login/
+- APPLICATION_HOST/login/
 - APPLICATION_HOST/signup/
 - APPLICATION_HOST/logout/
 - APPLICATION_HOST/dashboard/ (only after authentication)
@@ -63,7 +63,7 @@ Finally, if you wish to change the URL structure of the authentication routes yo
 
 In this case your routes will now look as follows
 
-- APPLICATION_host/auth/login/
+- APPLICATION_HOST/auth/login/
 - APPLICATION_HOST/auth/signup/
 - APPLICATION_HOST/auth/logout/
 - APPLICATION_HOST/auth/dashboard/
