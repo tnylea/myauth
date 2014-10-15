@@ -3,19 +3,19 @@
 class MyAuth_User_Controller extends Base_Controller{
 	
 	public static $rules = array(
-        'email' => 'required|email|unique:users',
-        'password' => 'required|confirmed'
-    );
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed'
+        );
 
 	public function action_signup(){
 
-		$validation = Validator::make( Input::all(), static::$rules );
+	    $validation = Validator::make( Input::all(), static::$rules );
+		
+	    if ($validation->fails()){
+	       	return Redirect::to('signup')->with_errors($validation->errors);
+	    }
 
-		if ($validation->fails()){
-			return Redirect::to('signup')->with_errors($validation->errors);
-		}
-
-		$user_data = array( 'email' => Input::get('email'), 'password' => Hash::make(Input::get('password')) ); 
+	    $user_data = array( 'email' => Input::get('email'), 'password' => Hash::make(Input::get('password')) ); 
 
 	    $user = new User($user_data);
 	    $user->save();
